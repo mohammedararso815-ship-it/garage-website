@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Auto Works | Precision Garage & Performance</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Chalan&family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS RESET & MODERN VARIABLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        :root {
+            --bg-main: #0b0f17;
+            --bg-card: #131924;
+            --primary: #ff5e00; /* Octane Amber */
+            --primary-glow: rgba(255, 94, 0, 0.2);
+            --text-main: #ffffff;
+            --text-muted: #8fa0dd;
+            --border: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* CUSTOM UTILITIES */
+        .glow-text {
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        /* NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(11,15,23,0.9), rgba(11,15,23,0));
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+            padding: 25px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(11, 15, 23, 0.95);
+            border-color: var(--border);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .btn-accent {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-accent:hover {
+            background: var(--primary);
+            color: var(--text-main);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        /* HERO EXPLOSION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(11, 15, 23, 0.95) 30%, rgba(11, 15, 23, 0.4)), 
+                        url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin-left: calc((100vw - 1200px) / 2);
+            animation: fadeIn 1s ease;
+        }
+
+        @media(max-width: 1260px) {
+            .hero-content { margin-left: 40px; }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0aec0;
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text-main);
+            padding: 16px 40px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 94, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 94, 0, 0.5);
+        }
+
+        /* INTERACTIVE SERVICES HUB */
+        .section-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            color: #637797;
+            margin-top: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #7f92b1;
+            font-size: 15px;
+        }
+
+        /* APP CALCULATOR WIDGET */
+        .calculator-box {
+            background: linear-gradient(145deg, #131924, #0e131d);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .calc-ui select, .calc-ui input {
+            width: 100%;
+            padding: 14px;
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .calc-ui label {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: #637797;
+        }
+
+        .calc-result {
+            text-align: center;
+            border-left: 1px solid var(--border);
+            padding-left: 50px;
+        }
+
+        .price-display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            line-height: 1;
+            margin: 15px 0;
+        }
+
+        /* LIVE BOOKING MODAL INTERFACE */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(7, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            width: 90%;
+            max-width: 550px;
+            padding: 40px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 24px;
+            color: #637797;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVE DESIGN CONTROLS */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3rem; }
+            .calculator-box { grid-template-columns: 1fr; gap: 30px; }
+            .calc-result { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY TRANSPARENT NAVIGATION HEADER -->
+    <header id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-gauge-high"></i> APEX<span>WORKS</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#estimator">Instant Quote</a></li>
+                <li><a href="#about">Our Standards</a></li>
+            </ul>
+            <button class="btn-accent" onclick="openModal()">Book Appointment</button>
+        </div>
+    </header>
+
+    <!-- ACCELERATED HERO FRAME -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="glow-text">High Performance Automotive Care.</h1>
+            <p>From advanced mechanical diagnostics to precision ceramic coating, we deliver uncompromised engineering and track-ready refinement for your vehicle.</p>
+            <button class="btn-primary" onclick="openModal()">Secure Spot</button>
+        </div>
+    </section>
+
+    <!-- PREMIUM SERVICES DISPLAY -->
+    <section class="section-wrapper" id="services">
+        <div class="section-title">
+            <h2>Elite Workshop Capabilities</h2>
+            <p>Select a modern track suite designed for comprehensive fleet handling.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h3>ECU Tuning & Diagnostics</h3>
+                <p>Unlock architectural power limits. Precision scanning maps engine nodes to clean out system delays completely.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+                <h3>Ceramic & Detail Studio</h3>
+                <p>Multi-layer clear shield paint protection formulas engineered to deflect harsh ultraviolet elements and dust.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                <h3>Advanced Dynamics</h3>
+                <p>Calibrated laser balance alignments, track suspension adjustments, and race-grade composite pad replacements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE ESTIMATOR CONTROLS -->
+    <section class="section-wrapper" id="estimator">
+        <div class="section-title">
+            <h2>Instant Quote Engine</h2>
+            <p>Configure parameters dynamically to calculate estimated material and labor adjustments instantly.</p>
+        </div>
+
+        <div class="calculator-box">
+            <div class="calc-ui">
+                <label>Vehicle Class</label>
+                <select id="vehicleType" onchange="calculateQuote()">
+                    <option value="1.0">Sports Coupe / Sedan</option>
+                    <option value="1.25">Full-Size SUV / Truck</option>
+                    <option value="1.5">Supercar / Exotic</option>
+                </select>
+
+                <label>Treatment System</label>
+                <select id="serviceType" onchange="calculateQuote()">
+                    <option value="85">Full Synthetic Oil & Checkup ($85)</option>
+                    <option value="350">Stage 1 Performance Remap ($350)</option>
+                    <option value="790">9H Ceramic Paint Correction ($790)</option>
+                </select>
+            </div>
+            <div class="calc-result">
+                <h3>Estimated Value</h3>
+                <div class="price-display" id="priceOutput">$85</div>
+                <p style="font-size: 13px; color:#637797;">*Subject to physical diagnostics verification upon intake configuration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE MODAL APPOINTMENT BOOKING CONSOLE -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-xmark close-modal" onclick="closeModal()"></i>
+            <h3 style="font-family:'Space Grotesk'; font-size:26px; margin-bottom:20px;">Reserve Service Bay</h3>
+            <form onsubmit="handleForm(event)">
+                <div class="calc-ui">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="John Doe" required>
+                    
+                    <label>Preferred Date</label>
+                    <input type="date" id="bookingDate" required>
+
+                    <label>Select Workspace Bay</label>
+                    <select>
+                        <option>Diagnostics & Tuning Suite</option>
+                        <option>Detailing & Paint Protection Lab</option>
+                        <option>General Mechanical Overhaul Bay</option>
+                    </select>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top:10px;">Confirm Bay Reservation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPT INFRASTRUCTURE -->
+    <script>
+        // Navbar structural scroll tracking
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Interactive dynamic quote logic
+        function calculateQuote() {
+            const modifier = parseFloat(document.getElementById('vehicleType').value);
+            const basePrice = parseFloat(document.getElementById('serviceType').value);
+            const total = Math.round(basePrice * modifier);
+            document.getElementById('priceOutput').innerText = `$${total}`;
+        }
+
+        // Live booking screen controllers
+        const modal = document.getElementById('bookingModal');
+        
+        function openModal() {
+            modal.classList.add('active');
+            // Default calendar input restriction to current operational day
+            document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        function handleForm(e) {
+            e.preventDefault();
+            alert("Bay reservation successful. The engineering team will reach out within 2 hours with structural scheduling options.");
+            closeModal();
+        }
+    </script>
+</body>
+</html>
